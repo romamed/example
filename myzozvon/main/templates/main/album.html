@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+	
+	{% load static %}
+	
+	{% if tracks %}
+		<img style="width: 100px; height: 100px;" src="{% static image.0.0 %}">
+		<h4>{{album}}</h4>
+    	<h5>Tracks:</h5>
+    	<ol>
+    		{% for str in tracks %}
+    			<li>
+    			{{str.0}}
+    			<audio src="{% static str.1 %}" controls="controls"></audio>
+    			</li>
+    		{% endfor %}
+    	</ol>
+    {% else %}
+    	<p>No bands are available.</p>
+	{% endif %}
+    
+    <button onclick="location.href='/logout'">Logout</button>
+
+{% endblock %}

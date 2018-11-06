@@ -1,0 +1,48 @@
+CREATE TABLE store (id      INT PRIMARY KEY AUTO_INCREMENT,
+                    name    VARCHAR(128) NOT NULL,
+                    site    VARCHAR(128),
+                    address VARCHAR(128) NOT NULL
+                    );
+
+INSERT INTO store (name, site, address) VALUES('MVideo','mvideo.ru','spb obvodnyi kanal 3');
+INSERT INTO store (name, site, address) VALUES('DNS','dns.ru','spb vladimirskaya 7');
+INSERT INTO store (name, site, address) VALUES('Key','key.ru','spb sadovaya 11');
+
+CREATE TABLE product_in_store (id          INT PRIMARY KEY AUTO_INCREMENT,
+                               store_id    INT NOT NULL REFERENCES store (id),
+                               product_id  INT NOT NULL REFERENCES store (id),
+                               price       FLOAT NOT NULL
+                               );
+
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(1,1,700);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(1,2,800);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(1,5,600);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(2,1,900);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(2,3,1200);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(2,5,1100);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(3,1,1000);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(3,2,1300);
+INSERT INTO product_in_store (store_id, product_id, price) VALUES(3,4,950);
+                               
+CREATE TABLE product (id            INT PRIMARY KEY AUTO_INCREMENT,
+                      name          VARCHAR(128) NOT NULL,
+                      producer_name VARCHAR(128) NOT NULL REFERENCES producer (name),
+                      description   VARCHAR(128) NOT NULL
+                      );
+
+INSERT INTO product (name, producer_name, description) VALUES('mouse','genius','Ergonomic PC Gaming Mouse with 6400 DPI Optical Sensor');
+INSERT INTO product (name, producer_name, description) VALUES('mouse','razer','UtechSmart Venus 16400 DPI High Precision Laser MMO Gaming Mouse');
+INSERT INTO product (name, producer_name, description) VALUES('mouse','msi','Insten Optical Laser USB Gaming Wired Mouse Mice For PC Laptop Computer');
+INSERT INTO product (name, producer_name, description) VALUES('keyboard','msi','G213 Prodigy Gaming');
+INSERT INTO product (name, producer_name, description) VALUES('keyboard','logitech','EasyTouch 132 Luminous 4X Large');
+INSERT INTO product (name, producer_name, description) VALUES('keyboard','a4tech','Cool Multimedia 3 colors LED Illuminated Backlight USB');
+
+CREATE TABLE producer (name      VARCHAR(128) PRIMARY KEY,
+                       site      VARCHAR(128) NOT NULL
+                       );
+
+INSERT INTO producer (name, site) VALUES('genius','genius.com');
+INSERT INTO producer (name, site) VALUES('razer','razer.com');
+INSERT INTO producer (name, site) VALUES('msi','msi.com');
+INSERT INTO producer (name, site) VALUES('logitech','logitech.com');
+INSERT INTO producer (name, site) VALUES('a4tech','a4tech.com'); 
