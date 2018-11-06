@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h4>{{ band }}</h4>
+    
+    {% if genre %}
+    	<h5>Genre:</h5>
+    	{% for str in genre %}
+       		<p>
+       			<h7>{{str.0}}</h7>
+       		<p/>
+    	{% endfor %}
+    {% else %}
+    	<p>No bands are available.</p>
+	{% endif %}
+    
+    {% if artists %}
+    	<h5>Members:</h5>
+    	{% for str in artists %}
+       		<p>
+       			<h7>{{str.0}} {{str.1}} {{str.2}}</h7>
+       		<p/>
+    	{% endfor %}
+    {% else %}
+    	<p>No bands are available.</p>
+	{% endif %}
+	
+	{% if albums %}
+    	<h5>Albums:</h5>
+    	{% for str in albums %}
+       		<p>
+       			<a href="{% url 'album' band str.0 %}">{{str.0}}</a>
+       		<p/>
+    	{% endfor %}
+    {% else %}
+    	<p>No bands are available.</p>
+	{% endif %}
+    
+    <button onclick="location.href='/logout'">Logout</button>
+
+{% endblock %}
