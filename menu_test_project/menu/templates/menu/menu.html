@@ -1,0 +1,14 @@
+{% load tags %}
+<h4>menu</h4>
+
+{% for l in list %}
+	{% if l == "(" %}
+    	<ul>
+    {% elif l == ")" %}
+    	</ul>
+    {% else %}
+    	<li>
+    		<a href="{% url 'main' l.0 %}"> {{ l.1 }} </a>
+    	</li>
+    {% endif %}
+{% endfor %}
